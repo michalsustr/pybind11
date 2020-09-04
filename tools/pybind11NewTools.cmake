@@ -208,6 +208,9 @@ function(pybind11_add_module target_name)
   if(ARG_OPT_SIZE)
     target_link_libraries(${target_name} PRIVATE pybind11::opt_size)
   endif()
+
+  # Avoid the -D${target_name}_EXPORTS definition that CMake adds by default
+  set_property(TARGET ${target_name} PROPERTY DEFINE_SYMBOL "")
 endfunction()
 
 function(pybind11_extension name)
